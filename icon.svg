@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#1c0709"/>
+      <stop offset="60%" stop-color="#0a0c10"/>
+      <stop offset="100%" stop-color="#050608"/>
+    </radialGradient>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff2b38"/>
+      <stop offset="60%" stop-color="#cc0a1c"/>
+      <stop offset="100%" stop-color="#73000b"/>
+    </linearGradient>
+    <filter id="crimsonGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="16" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Background rounded canvas -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)"/>
+  <rect width="504" height="504" x="4" y="4" rx="108" fill="none" stroke="rgba(255, 30, 39, 0.4)" stroke-width="4"/>
+
+  <!-- Tactical Glow behind Heart -->
+  <circle cx="256" cy="240" r="140" fill="#ff1e27" opacity="0.18" filter="blur(20px)"/>
+
+  <!-- Main Heart Shape -->
+  <g filter="url(#crimsonGlow)">
+    <path d="M256 420 S90 310 90 200 C90 135 140 85 205 85 C238 85 252 102 256 108 C260 102 274 85 307 85 C372 85 422 135 422 200 C422 310 256 420 256 420 Z" 
+          fill="url(#shieldGrad)" 
+          stroke="#ff4a55" 
+          stroke-width="5"/>
+  </g>
+
+  <!-- High-Energy ECG Pulse Line -->
+  <path d="M125 210 H195 L225 140 L260 280 L295 175 L320 225 H387" 
+        fill="none" 
+        stroke="#ffffff" 
+        stroke-width="18" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"/>
+
+  <!-- Vitalis Pulse Dot -->
+  <circle cx="387" cy="225" r="9" fill="#ff1e27" stroke="#ffffff" stroke-width="3"/>
+</svg>

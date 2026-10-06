@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>VITALIS HEALTH SUPPORT | Stay Healthy, Stay Strong</title>
+  
+  <!-- PWA Meta Tags & Manifest -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#ff1e27">
+  <meta name="color-scheme" content="dark">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Vitalis">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  
+  <!-- Google Fonts: Outfit (modern body/ui) & Rajdhani (tactical high-energy warrior font) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Rajdhani:wght@500;600;700;800&family=Teko:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-warrior">
+  <!-- Dynamic Background Effects -->
+  <div class="bg-fx">
+    <div class="glow-orb glow-1"></div>
+    <div class="glow-orb glow-2"></div>
+    <div class="slash-grid"></div>
+    <div class="brush-streak streak-1"></div>
+    <div class="brush-streak streak-2"></div>
+  </div>
+
+  <!-- Offline Status Bar Notification -->
+  <div id="offlineStatusBar" class="offline-status-bar hidden" role="status" aria-live="polite">
+    <span class="offline-icon">⚡</span>
+    <span class="offline-text">OFFLINE MODE ACTIVE &bull; Local data synced and 100% operational</span>
+    <span class="offline-badge">LOCAL DB</span>
+  </div>
+
+  <!-- Audio feedback toggle & Device Mockup Switcher -->
+  <div class="top-floating-bar" id="topFloatingBar">
+    <div class="badge-tag">
+      <span class="pulse-dot"></span> VITALIS PROTOCOL v2.4
+    </div>
+    <div class="floating-controls">
+      <button id="viewToggleBtn" class="pill-btn desktop-only-control" title="Toggle Desktop Fit / Phone Frame View">
+        <svg id="viewIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+        <span id="viewModeLabel">Desktop Fit</span>
+      </button>
+      <button id="soundToggleBtn" class="pill-btn active" title="Sound Effects">
+        <svg id="soundIconOn" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+        <svg id="soundIconOff" class="hidden" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+        <span id="soundLabel">SFX ON</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container: Supports Desktop Fit Mode or Phone Frame Mockup -->
+  <main class="app-viewport desktop-fit-mode" id="appViewport">
+    
+    <!-- Phone Mockup Bezel Outer Shell -->
+    <div class="phone-bezel">
+      <div class="speaker-notch">
+        <div class="camera-lens"></div>
+        <div class="speaker-grill"></div>
+      </div>
+
+      <!-- Phone Screen Canvas -->
+      <div class="phone-screen" id="phoneScreen">
+
+        <!-- ============================================== -->
+        <!-- SCREEN 1: ACCESS CODE GATEWAY (First Page)     -->
+        <!-- ============================================== -->
+        <section id="accessScreen" class="app-screen active">
+          <div class="access-content">
+            
+            <!-- Branding Header -->
+            <div class="brand-hero">
+              <div class="brand-logo-glow">
+                <div class="heart-pulse-box">
+                  <svg class="heart-svg" viewBox="0 0 100 100">
+                    <path class="heart-shape" d="M50 88s-36-23-36-47c0-14 11-25 25-25 8 0 11 4 11 4s3-4 11-4c14 0 25 11 25 25 0 24-36 47-36 47z" fill="url(#crimsonGrad)"/>
+                    <path class="heart-ecg" d="M22 46h16l6-15 9 30 7-22 5 7h15" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <defs>
+                      <linearGradient id="crimsonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#ff1e27" />
+                        <stop offset="100%" stop-color="#990012" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </div>
+              </div>
+              <h1 class="brand-title">HEALTH <span class="highlight-red">SUPPORT</span></h1>
+              <p class="brand-sub">YOUR HEALTH. OUR PRIORITY.</p>
+              <div class="tag-slogan">STAY HEALTHY STAY STRONG</div>
+            </div>
+
+            <!-- Key Feature Badges Grid (From Reference Image) -->
+            <div class="features-preview-list">
+              <div class="feat-item">
+                <div class="feat-icon-circle">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"></path><path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"></path><circle cx="20" cy="10" r="2"></circle></svg>
+                </div>
+                <div class="feat-info">
+                  <h4>CONSULT DOCTORS</h4>
+                  <p>Expert advice anytime, anywhere.</p>
+                </div>
+              </div>
+              <div class="feat-item">
+                <div class="feat-icon-circle">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+                </div>
+                <div class="feat-info">
+                  <h4>TRACK YOUR HEALTH</h4>
+                  <p>Monitor your vitals and progress.</p>
+                </div>
+              </div>
+              <div class="feat-item">
+                <div class="feat-icon-circle">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"></path><path d="m8.5 8.5 7 7"></path></svg>
+                </div>
+                <div class="feat-info">
+                  <h4>MEDICATION REMINDERS</h4>
+                  <p>Never miss a dose again.</p>
+                </div>
+              </div>
+              <div class="feat-item">
+                <div class="feat-icon-circle">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="5" r="2"></circle><path d="M9 20v-6h6v6"></path><path d="M6 8l6 3 6-3"></path></svg>
+                </div>
+                <div class="feat-info">
+                  <h4>WARRIOR WELLNESS</h4>
+                  <p>Live healthier, stronger, longer.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Access Code Verification Card -->
+            <div class="access-box">
+              <div class="access-box-header">
+                <span class="security-shield">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff1e27" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                </span>
+                <span>AUTHENTICATION TERMINAL</span>
+              </div>
+              <label for="accessCodeInput" class="code-label">ENTER ACCESS CODE</label>
+              <div class="input-wrapper">
+                <input 
+                  type="text" 
+                  id="accessCodeInput" 
+                  value="test1" 
+                  placeholder="Enter access code" 
+                  autocomplete="off" 
+                  spellcheck="false"
+                >
+                <button type="button" class="btn-clear-code" id="clearCodeBtn" title="Clear">✕</button>
+              </div>
+              <p class="code-hint">Default key is pre-filled: <span class="highlight-code">test1</span></p>
+
+              <button id="btnUnlockApp" class="btn-warrior-primary glow-pulse">
+                <span>ACCESS APPLICATION</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+
+              <div id="accessErrorMsg" class="access-error hidden">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                <span>Invalid Access Code. Please enter <strong>test1</strong>.</span>
+              </div>
+
+              <!-- PWA Install Button: Below Access Code -->
+              <div class="install-action-wrapper" id="installSection">
+                <div class="install-separator">
+                  <span>INSTALL FOR INSTANT OFFLINE ACCESS</span>
+                </div>
+                <button type="button" id="btnInstallApp" class="btn-install-app glow-subtle" title="Install Vitalis as standalone app">
+                  <div class="btn-install-content">
+                    <span class="btn-install-icon">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                      </svg>
+                    </span>
+                    <div class="btn-install-info">
+                      <span class="btn-install-title">INSTALL VITALIS APP</span>
+                      <span class="btn-install-sub" id="installBtnSub">Desktop &amp; Mobile &bull; Works 100% Offline</span>
+                    </div>
+                  </div>
+                  <span class="btn-install-badge" id="installBadge">INSTALL</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Footer trust badges from poster -->
+            <div class="access-footer-badges">
+              <div class="trust-pill"><span class="badge-icon">🛡️</span> SAFE & SECURE</div>
+              <div class="trust-divider"></div>
+              <div class="trust-pill"><span class="badge-icon">⚡</span> FAST & EASY</div>
+              <div class="trust-divider"></div>
+              <div class="trust-pill"><span class="badge-icon">❤️</span> ALWAYS WITH YOU</div>
+            </div>
+
+          </div>
+        </section>
+
+
+        <!-- ============================================== -->
+        <!-- SCREEN 2: MAIN WARRIOR APP HUB                 -->
+        <!-- ============================================== -->
+        <section id="mainAppScreen" class="app-screen">
+          
+          <!-- Top App Header -->
+          <header class="app-header">
+            <div class="header-left">
+              <div class="mini-logo">
+                <svg width="22" height="22" viewBox="0 0 100 100">
+                  <path d="M50 88s-35-22-35-46c0-14 11-25 25-25 7 0 10 3 10 3s3-3 10-3c14 0 25 11 25 25 0 24-35 46-35 46z" fill="#ff1e27"/>
+                  <path d="M22 46h16l6-15 9 30 7-22 5 7h15" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="header-titles">
+                <span class="header-brand">HEALTH <span class="highlight-red">SUPPORT</span></span>
+                <span class="user-greeting" id="topGreetingUser">Good day, Warrior!</span>
+              </div>
+            </div>
+            <div class="header-right">
+              <button class="icon-circle-btn btn-install-header" id="btnHeaderInstall" title="Install App to Device">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              </button>
+              <button class="icon-circle-btn" id="btnNotifications" title="Reminders">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                <span class="notif-dot"></span>
+              </button>
+              <button class="icon-circle-btn" id="btnLockApp" title="Lock & Return to Gate">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              </button>
+            </div>
+          </header>
+
+          <!-- Top Navigation Chips (Register, Vital Signs, Meds, Consult) -->
+          <div class="module-pills-bar">
+            <button class="nav-chip active" data-target="tab-dashboard">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+              <span>Overview</span>
+            </button>
+            <button class="nav-chip" data-target="tab-vitals">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+              <span>Vitals Tracker</span>
+            </button>
+            <button class="nav-chip" data-target="tab-register">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+              <span>Register Patient</span>
+            </button>
+            <button class="nav-chip" data-target="tab-meds">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"></path><path d="m8.5 8.5 7 7"></path></svg>
+              <span>Medications</span>
+            </button>
+          </div>
+
+          <!-- App Scrollable Main Body -->
+          <div class="app-body-scroll">
+            
+            <!-- ============================================== -->
+            <!-- TAB 1: OVERVIEW DASHBOARD (Exact Match to Poster) -->
+            <!-- ============================================== -->
+            <div id="tab-dashboard" class="tab-pane active">
+              
+              <!-- Greeting Hero Banner -->
+              <div class="hero-greeting-card">
+                <div class="hero-text-content">
+                  <h2 class="warrior-headline" id="dashboardGreeting">Good day, Warrior!</h2>
+                  <p class="warrior-subline">Your health journey matters. Stay focused.</p>
+                </div>
+                <div class="user-avatar-badge" id="dashAvatar">⚔️</div>
+              </div>
+
+              <!-- HEALTH OVERVIEW STATS (Heart Rate, SpO2, Body Temp) -->
+              <div class="section-card health-overview-card">
+                <div class="section-card-header">
+                  <div class="section-title-wrap">
+                    <span class="live-dot pulse"></span>
+                    <h3 class="section-title">Health Overview</h3>
+                  </div>
+                  <span class="timestamp-badge" id="lastUpdatedBadge">LIVE NOW</span>
+                </div>
+
+                <!-- 3 Metric Rings / Dials -->
+                <div class="vitals-triple-grid">
+                  
+                  <!-- Metric 1: Heart Rate -->
+                  <div class="vital-mini-card vital-hr" id="miniCardHR" data-click-vital="hr">
+                    <div class="vital-circle-visual">
+                      <div class="circle-icon pulse-fast">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="#ff1e27" stroke="#ff1e27"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                      </div>
+                      <svg class="ring-svg" viewBox="0 0 36 36">
+                        <path class="ring-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                        <path class="ring-fill fill-hr" stroke-dasharray="72, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                      </svg>
+                    </div>
+                    <div class="vital-num-row">
+                      <span class="vital-val" id="valHR">72</span>
+                      <span class="vital-unit">bpm</span>
+                    </div>
+                    <div class="vital-title">Heart Rate</div>
+                    <div class="vital-status status-good">Normal Range</div>
+                  </div>
+
+                  <!-- Metric 2: SpO2 -->
+                  <div class="vital-mini-card vital-spo2" id="miniCardSpO2" data-click-vital="spo2">
+                    <div class="vital-circle-visual">
+                      <div class="circle-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="#ff1e27" stroke="#ff1e27"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
+                      </div>
+                      <svg class="ring-svg" viewBox="0 0 36 36">
+                        <path class="ring-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                        <path class="ring-fill fill-spo2" stroke-dasharray="98, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                      </svg>
+                    </div>
+                    <div class="vital-num-row">
+                      <span class="vital-val" id="valSpO2">98</span>
+                      <span class="vital-unit">%</span>
+                    </div>
+                    <div class="vital-title">SpO₂</div>
+                    <div class="vital-status status-good">Optimal</div>
+                  </div>
+
+                  <!-- Metric 3: Body Temp -->
+                  <div class="vital-mini-card vital-temp" id="miniCardTemp" data-click-vital="temp">
+                    <div class="vital-circle-visual">
+                      <div class="circle-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff1e27" stroke-width="2.5"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"></path></svg>
+                      </div>
+                      <svg class="ring-svg" viewBox="0 0 36 36">
+                        <path class="ring-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                        <path class="ring-fill fill-temp" stroke-dasharray="68, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                      </svg>
+                    </div>
+                    <div class="vital-num-row">
+                      <span class="vital-val" id="valTemp">36.6</span>
+                      <span class="vital-unit">°C</span>
+                    </div>
+                    <div class="vital-title">Body Temp</div>
+                    <div class="vital-status status-good">Normal</div>
+                  </div>
+
+                </div>
+
+                <!-- Blood Pressure Banner -->
+                <div class="bp-quick-bar">
+                  <div class="bp-info">
+                    <span class="bp-label">BLOOD PRESSURE</span>
+                    <span class="bp-value" id="valBP">120 / 80 <small>mmHg</small></span>
+                  </div>
+                  <div class="bp-badge">Optimal</div>
+                  <button class="btn-quick-record" id="btnOpenVitalsModal">+ Log Vitals</button>
+                </div>
+
+                <!-- Live ECG Dynamic Simulation Canvas -->
+                <div class="ecg-canvas-container">
+                  <div class="ecg-header">
+                    <span>LIVE CARDIO ECG MONITOR</span>
+                    <span class="ecg-bpm-indicator"><span class="pulse-dot"></span> <span id="ecgLiveBPM">72</span> BPM</span>
+                  </div>
+                  <canvas id="ecgCanvas" width="400" height="90"></canvas>
+                </div>
+              </div>
+
+              <!-- Main Red CTA Banner: Book a Consultation (Exact Poster Style) -->
+              <div class="action-banner-red glow-card" id="btnBookConsultationBanner">
+                <div class="banner-avatar-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </div>
+                <div class="banner-text">
+                  <h3>Book a Consultation</h3>
+                  <p>Talk to a licensed doctor &amp; specialist</p>
+                </div>
+                <div class="banner-arrow">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </div>
+              </div>
+
+              <!-- 4 App Grid Buttons (Matches Reference Screen: My Records, Medications, Health Tips, More) -->
+              <div class="dashboard-quad-grid">
+                <div class="quad-btn" id="btnQuadRecords">
+                  <div class="quad-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                  </div>
+                  <span class="quad-title">My Records</span>
+                  <span class="quad-subtitle" id="recordsCountSubtitle">3 logs saved</span>
+                </div>
+
+                <div class="quad-btn" id="btnQuadMedications">
+                  <div class="quad-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"></path><path d="m8.5 8.5 7 7"></path></svg>
+                  </div>
+                  <span class="quad-title">Medications</span>
+                  <span class="quad-subtitle">2 active doses</span>
+                </div>
+
+                <div class="quad-btn" id="btnQuadTips">
+                  <div class="quad-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                  </div>
+                  <span class="quad-title">Health Tips</span>
+                  <span class="quad-subtitle">Warrior routine</span>
+                </div>
+
+                <div class="quad-btn" id="btnQuadRegister">
+                  <div class="quad-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+                  </div>
+                  <span class="quad-title">Register / Profile</span>
+                  <span class="quad-subtitle">Edit warrior bio</span>
+                </div>
+              </div>
+
+              <!-- Quick Warrior Motivational Card -->
+              <div class="warrior-banner-quote">
+                <div class="quote-text">
+                  <span class="quote-tag">WARRIOR CODE</span>
+                  <p>"Physical fitness is not only one of the most important keys to a healthy body, it is the basis of dynamic and creative intellectual activity."</p>
+                </div>
+                <div class="quote-graphic">⚡</div>
+              </div>
+
+            </div>
+
+
+            <!-- ============================================== -->
+            <!-- TAB 2: VITAL SIGNS TRACKER MODULE              -->
+            <!-- ============================================== -->
+            <div id="tab-vitals" class="tab-pane">
+              
+              <div class="pane-header">
+                <div>
+                  <h2 class="pane-title">VITAL SIGNS <span class="highlight-red">TRACKER</span></h2>
+                  <p class="pane-subtitle">Live biomechanical diagnostics and vitals log</p>
+                </div>
+                <button class="btn-warrior-small glow-btn" id="btnOpenNewVitalModal">
+                  + Log Reading
+                </button>
+              </div>
+
+              <!-- Comprehensive Clinical Triage Status Banner -->
+              <div class="clinical-triage-card status-normal" id="clinicalTriageBanner">
+                <div class="triage-status-icon" id="triageIcon">🛡️</div>
+                <div class="triage-status-info">
+                  <div class="triage-header-row">
+                    <span class="triage-tag" id="triageBadge">TRIAGE: NORMAL</span>
+                    <span class="triage-time" id="triageTimestamp">ASSESSED JUST NOW</span>
+                  </div>
+                  <h4 class="triage-headline" id="triageHeadline">All Vital Signs Within Healthy Homeostatic Limits</h4>
+                  <p class="triage-detail" id="triageDetail">Cardiovascular, oxygenation, and metabolic readings conform to optimal warrior parameters.</p>
+                </div>
+                <button type="button" class="btn-triage-action hidden" id="btnTriageEmergency">
+                  🚨 CONSULT DOCTOR NOW
+                </button>
+              </div>
+
+              <!-- Current Live Vitals Summary Matrix with Calibrated Multi-Zone Bar Graphs -->
+              <div class="vitals-matrix-grid">
+                
+                <!-- 1. HEART RATE -->
+                <div class="matrix-card vital-card-enhanced" id="cardMatrixHR">
+                  <div class="matrix-top">
+                    <div class="vital-label-wrap">
+                      <span class="vital-icon-dot pulse"></span>
+                      <span class="matrix-label">HEART RATE</span>
+                    </div>
+                    <span class="assessment-badge normal" id="assessBadgeHR">NORMAL</span>
+                  </div>
+                  <div class="matrix-body">
+                    <div class="matrix-val-wrap">
+                      <span class="big-val" id="trackerHR">72</span>
+                      <span class="unit">BPM</span>
+                    </div>
+                    <div class="matrix-range">Target: 60 – 100 BPM</div>
+                  </div>
+
+                  <!-- Multi-Zone Calibrated Bar Graph -->
+                  <div class="vital-bargraph-container">
+                    <div class="bargraph-zones-bar">
+                      <div class="zone-segment zone-low" title="Low / Bradycardia (<60)"></div>
+                      <div class="zone-segment zone-normal" title="Normal (60-100)"></div>
+                      <div class="zone-segment zone-above" title="Above Normal (101-120)"></div>
+                      <div class="zone-segment zone-critical" title="Needs Medical Attention (>120)"></div>
+                    </div>
+                    <div class="bargraph-pointer" id="pointerHR" style="left: 36%;"></div>
+                  </div>
+                  <div class="bargraph-scale-labels">
+                    <span>40</span>
+                    <span class="mark-normal">60</span>
+                    <span class="mark-normal">100</span>
+                    <span class="mark-alert">120</span>
+                    <span>180+</span>
+                  </div>
+
+                  <!-- Accurate Assessment Description Box -->
+                  <div class="vital-assessment-box" id="assessBoxHR">
+                    <span class="assess-icon">✓</span>
+                    <span class="assess-text" id="assessTextHR">Optimal resting sinus rhythm. Cardiovascular tone is strong.</span>
+                  </div>
+                </div>
+
+                <!-- 2. BLOOD OXYGEN (SpO2) -->
+                <div class="matrix-card vital-card-enhanced" id="cardMatrixSpO2">
+                  <div class="matrix-top">
+                    <div class="vital-label-wrap">
+                      <span class="vital-icon-dot"></span>
+                      <span class="matrix-label">BLOOD OXYGEN (SpO₂)</span>
+                    </div>
+                    <span class="assessment-badge normal" id="assessBadgeSpO2">NORMAL</span>
+                  </div>
+                  <div class="matrix-body">
+                    <div class="matrix-val-wrap">
+                      <span class="big-val" id="trackerSpO2">98</span>
+                      <span class="unit">%</span>
+                    </div>
+                    <div class="matrix-range">Target: 95% – 100%</div>
+                  </div>
+
+                  <!-- Multi-Zone Calibrated Bar Graph -->
+                  <div class="vital-bargraph-container">
+                    <div class="bargraph-zones-bar">
+                      <div class="zone-segment zone-critical" style="flex: 25;" title="Needs Medical Attention (<90%)"></div>
+                      <div class="zone-segment zone-above" style="flex: 20;" title="Above/Below Normal (90-94%)"></div>
+                      <div class="zone-segment zone-normal" style="flex: 55;" title="Normal (95-100%)"></div>
+                    </div>
+                    <div class="bargraph-pointer" id="pointerSpO2" style="left: 88%;"></div>
+                  </div>
+                  <div class="bargraph-scale-labels">
+                    <span class="mark-alert">&lt;90% Critical</span>
+                    <span class="mark-alert">94%</span>
+                    <span class="mark-normal">95% Normal</span>
+                    <span>100%</span>
+                  </div>
+
+                  <!-- Accurate Assessment Description Box -->
+                  <div class="vital-assessment-box" id="assessBoxSpO2">
+                    <span class="assess-icon">✓</span>
+                    <span class="assess-text" id="assessTextSpO2">Excellent arterial hemoglobin oxygen saturation. Cellular energy peak.</span>
+                  </div>
+                </div>
+
+                <!-- 3. BODY TEMPERATURE -->
+                <div class="matrix-card vital-card-enhanced" id="cardMatrixTemp">
+                  <div class="matrix-top">
+                    <div class="vital-label-wrap">
+                      <span class="vital-icon-dot"></span>
+                      <span class="matrix-label">BODY TEMPERATURE</span>
+                    </div>
+                    <span class="assessment-badge normal" id="assessBadgeTemp">NORMAL</span>
+                  </div>
+                  <div class="matrix-body">
+                    <div class="matrix-val-wrap">
+                      <span class="big-val" id="trackerTemp">36.6</span>
+                      <span class="unit">°C</span>
+                    </div>
+                    <div class="matrix-range">Target: 36.1°C – 37.2°C</div>
+                  </div>
+
+                  <!-- Multi-Zone Calibrated Bar Graph -->
+                  <div class="vital-bargraph-container">
+                    <div class="bargraph-zones-bar">
+                      <div class="zone-segment zone-low" style="flex: 20;" title="Hypothermia (<36.0°C)"></div>
+                      <div class="zone-segment zone-normal" style="flex: 35;" title="Normal (36.1-37.2°C)"></div>
+                      <div class="zone-segment zone-above" style="flex: 25;" title="Above Normal (37.3-38.3°C)"></div>
+                      <div class="zone-segment zone-critical" style="flex: 20;" title="Needs Medical Attention (>=38.4°C)"></div>
+                    </div>
+                    <div class="bargraph-pointer" id="pointerTemp" style="left: 42%;"></div>
+                  </div>
+                  <div class="bargraph-scale-labels">
+                    <span>35.0</span>
+                    <span class="mark-normal">36.1</span>
+                    <span class="mark-normal">37.2</span>
+                    <span class="mark-alert">38.4+</span>
+                    <span>41.0</span>
+                  </div>
+
+                  <!-- Accurate Assessment Description Box -->
+                  <div class="vital-assessment-box" id="assessBoxTemp">
+                    <span class="assess-icon">✓</span>
+                    <span class="assess-text" id="assessTextTemp">Normal thermal homeostasis. No pyrogenic or inflammatory spikes.</span>
+                  </div>
+                </div>
+
+                <!-- 4. BLOOD PRESSURE -->
+                <div class="matrix-card vital-card-enhanced" id="cardMatrixBP">
+                  <div class="matrix-top">
+                    <div class="vital-label-wrap">
+                      <span class="vital-icon-dot"></span>
+                      <span class="matrix-label">BLOOD PRESSURE</span>
+                    </div>
+                    <span class="assessment-badge normal" id="assessBadgeBP">NORMAL</span>
+                  </div>
+                  <div class="matrix-body">
+                    <div class="matrix-val-wrap">
+                      <span class="big-val" id="trackerBP">120/80</span>
+                      <span class="unit">mmHg</span>
+                    </div>
+                    <div class="matrix-range">Systolic &lt; 120 | Diastolic &lt; 80</div>
+                  </div>
+
+                  <!-- Multi-Zone Calibrated Bar Graph -->
+                  <div class="vital-bargraph-container">
+                    <div class="bargraph-zones-bar">
+                      <div class="zone-segment zone-normal" style="flex: 35;" title="Normal (<120)"></div>
+                      <div class="zone-segment zone-above" style="flex: 25;" title="Above Normal (120-139)"></div>
+                      <div class="zone-segment zone-critical" style="flex: 40;" title="Needs Medical Attention (>=140)"></div>
+                    </div>
+                    <div class="bargraph-pointer" id="pointerBP" style="left: 35%;"></div>
+                  </div>
+                  <div class="bargraph-scale-labels">
+                    <span>90</span>
+                    <span class="mark-normal">120 Normal</span>
+                    <span class="mark-alert">140 Stage 2</span>
+                    <span>180+ Crisis</span>
+                  </div>
+
+                  <!-- Accurate Assessment Description Box -->
+                  <div class="vital-assessment-box" id="assessBoxBP">
+                    <span class="assess-icon">✓</span>
+                    <span class="assess-text" id="assessTextBP">Ideal vascular resistance and cardiac pump efficiency.</span>
+                  </div>
+                </div>
+
+                <!-- 5. RESPIRATORY RATE -->
+                <div class="matrix-card vital-card-enhanced" id="cardMatrixResp">
+                  <div class="matrix-top">
+                    <div class="vital-label-wrap">
+                      <span class="vital-icon-dot"></span>
+                      <span class="matrix-label">RESPIRATORY RATE</span>
+                    </div>
+                    <span class="assessment-badge normal" id="assessBadgeResp">NORMAL</span>
+                  </div>
+                  <div class="matrix-body">
+                    <div class="matrix-val-wrap">
+                      <span class="big-val" id="trackerResp">16</span>
+                      <span class="unit">br/min</span>
+                    </div>
+                    <div class="matrix-range">Target: 12 – 20 br/min</div>
+                  </div>
+
+                  <!-- Multi-Zone Calibrated Bar Graph -->
+                  <div class="vital-bargraph-container">
+                    <div class="bargraph-zones-bar">
+                      <div class="zone-segment zone-low" style="flex: 20;" title="Bradypnea (<12)"></div>
+                      <div class="zone-segment zone-normal" style="flex: 40;" title="Normal (12-20)"></div>
+                      <div class="zone-segment zone-above" style="flex: 20;" title="Above Normal (21-25)"></div>
+                      <div class="zone-segment zone-critical" style="flex: 20;" title="Needs Medical Attention (>25)"></div>
+                    </div>
+                    <div class="bargraph-pointer" id="pointerResp" style="left: 45%;"></div>
+                  </div>
+                  <div class="bargraph-scale-labels">
+                    <span>8</span>
+                    <span class="mark-normal">12</span>
+                    <span class="mark-normal">20</span>
+                    <span class="mark-alert">25+</span>
+                    <span>35</span>
+                  </div>
+
+                  <!-- Accurate Assessment Description Box -->
+                  <div class="vital-assessment-box" id="assessBoxResp">
+                    <span class="assess-icon">✓</span>
+                    <span class="assess-text" id="assessTextResp">Eupnea steady state. Balanced gas exchange without respiratory stress.</span>
+                  </div>
+                </div>
+
+                <!-- 6. BLOOD GLUCOSE -->
+                <div class="matrix-card vital-card-enhanced" id="cardMatrixGlucose">
+                  <div class="matrix-top">
+                    <div class="vital-label-wrap">
+                      <span class="vital-icon-dot"></span>
+                      <span class="matrix-label">BLOOD GLUCOSE</span>
+                    </div>
+                    <span class="assessment-badge normal" id="assessBadgeGlucose">NORMAL</span>
+                  </div>
+                  <div class="matrix-body">
+                    <div class="matrix-val-wrap">
+                      <span class="big-val" id="trackerGlucose">95</span>
+                      <span class="unit">mg/dL</span>
+                    </div>
+                    <div class="matrix-range">Fasting Target: 70 – 99 mg/dL</div>
+                  </div>
+
+                  <!-- Multi-Zone Calibrated Bar Graph -->
+                  <div class="vital-bargraph-container">
+                    <div class="bargraph-zones-bar">
+                      <div class="zone-segment zone-low" style="flex: 20;" title="Hypoglycemia (<70)"></div>
+                      <div class="zone-segment zone-normal" style="flex: 30;" title="Normal Fasting (70-99)"></div>
+                      <div class="zone-segment zone-above" style="flex: 25;" title="Above Normal (100-125)"></div>
+                      <div class="zone-segment zone-critical" style="flex: 25;" title="Needs Medical Attention (>=126)"></div>
+                    </div>
+                    <div class="bargraph-pointer" id="pointerGlucose" style="left: 42%;"></div>
+                  </div>
+                  <div class="bargraph-scale-labels">
+                    <span>50</span>
+                    <span class="mark-normal">70</span>
+                    <span class="mark-normal">99</span>
+                    <span class="mark-alert">126+</span>
+                    <span>200+</span>
+                  </div>
+
+                  <!-- Accurate Assessment Description Box -->
+                  <div class="vital-assessment-box" id="assessBoxGlucose">
+                    <span class="assess-icon">✓</span>
+                    <span class="assess-text" id="assessTextGlucose">Normal fasting glycemia. Stable insulin sensitivity.</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- High-Precision Biometric Pulse & PPG Scanner Terminal -->
+              <div class="precision-scanner-terminal">
+                <div class="scanner-terminal-header">
+                  <div class="scanner-title-box">
+                    <span class="pulse-dot"></span>
+                    <div>
+                      <h4 class="scanner-title">HIGH-PRECISION BIOMETRIC PULSE SCANNER</h4>
+                      <p class="scanner-sub">Clinical PPG &amp; R-R Interval Photometric Diagnostics</p>
+                    </div>
+                  </div>
+                  <div class="scanner-mode-switch">
+                    <button type="button" class="mode-btn active" id="btnModeTouch">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                      <span>Tactile Pulse / Tap</span>
+                    </button>
+                    <button type="button" class="mode-btn" id="btnModeCamera">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                      <span>Camera Optical PPG</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Scanner Viewport Area -->
+                <div class="scanner-viewport-box">
+                  
+                  <!-- Left/Center: Interactive Touch & Camera Hub -->
+                  <div class="scanner-interaction-panel">
+                    
+                    <!-- Touch Sensor Mode Content -->
+                    <div id="touchSensorPanel" class="sensor-view-pane active">
+                      <div class="biometric-pad-wrapper">
+                        <button type="button" class="biometric-fingerprint-pad" id="biometricTouchPad">
+                          <div class="pad-scanner-beam"></div>
+                          <div class="pad-ripple"></div>
+                          <div class="pad-ripple delay"></div>
+                          <svg class="pad-fingerprint-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"></path>
+                            <path d="M14 13.12c0 2.38 0 6.38-1 8.88"></path>
+                            <path d="M2 16h.01"></path>
+                            <path d="M21.8 16c.2-2 .131-5.354 0-6"></path>
+                            <path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"></path>
+                            <path d="M8.65 22c.21-.66.45-1.32.57-2"></path>
+                            <path d="M9 6.8a6 6 0 0 1 9 5.2v2"></path>
+                            <path d="M12 2a10 10 0 0 0-10 10c0 1.95.4 3.82 1.15 5.5"></path>
+                            <path d="M19 12a7 7 0 0 0-7-7"></path>
+                          </svg>
+                          <div class="pad-tap-count" id="padBeatCount">0 BEATS</div>
+                        </button>
+                      </div>
+
+                      <div class="scan-instructions-box">
+                        <div class="scan-status-line" id="scanStatusLine">
+                          READY • PRESS PAD OR TAP TO PULSE RHYTHM
+                        </div>
+                        <p class="scan-instruction-sub" id="scanSubInstruction">
+                          Tap along to your carotid or wrist pulse, or click <strong>"Auto 10s Biometric Scan"</strong> for multi-phase clinical analysis.
+                        </p>
+                      </div>
+
+                      <div class="scanner-action-buttons">
+                        <button type="button" class="btn-warrior-small glow-btn" id="btnAuto10sScan">
+                          ⚡ Auto 10s Biometric Scan
+                        </button>
+                        <button type="button" class="btn-warrior-small secondary" id="btnResetTapScan">
+                          ↺ Reset Beats
+                        </button>
+                      </div>
+                    </div>
+
+                    <!-- Camera Optical PPG Mode Content -->
+                    <div id="cameraSensorPanel" class="sensor-view-pane hidden">
+                      <div class="camera-lens-container">
+                        <video id="cameraVideo" playsinline autoplay muted class="camera-stream-video"></video>
+                        <canvas id="cameraSampleCanvas" width="60" height="60" class="hidden"></canvas>
+                        <div class="camera-overlay-target">
+                          <div class="lens-crosshair"></div>
+                          <span class="lens-status" id="lensStatusLabel">PLACE FINGER OVER LENS</span>
+                        </div>
+                      </div>
+                      <div class="camera-controls-row">
+                        <button type="button" class="btn-warrior-small glow-btn" id="btnStartCameraScan">
+                          📷 Start Optical Scan
+                        </button>
+                        <button type="button" class="btn-warrior-small secondary" id="btnStopCameraScan">
+                          ⏹ Stop
+                        </button>
+                      </div>
+                      <p class="camera-hint">Ensure fingertip covers camera lens completely. Ambient light or torch assists blood volume detection.</p>
+                    </div>
+
+                  </div>
+
+                  <!-- Right: Real-Time Waveform & Precision Metrics -->
+                  <div class="scanner-telemetry-panel">
+                    
+                    <!-- Real-Time Waveform Oscilloscope -->
+                    <div class="telemetry-oscilloscope">
+                      <div class="osc-header">
+                        <span class="osc-label">PULSE WAVEFORM OSCILLOSCOPE (PPG)</span>
+                        <span class="osc-quality" id="signalQualityBadge">SIGNAL: OPTIMAL</span>
+                      </div>
+                      <canvas id="scannerOscCanvas" width="340" height="85"></canvas>
+                    </div>
+
+                    <!-- Live Metrics Display -->
+                    <div class="telemetry-metrics-grid">
+                      <div class="tele-metric-box">
+                        <span class="tele-label">PULSE RATE</span>
+                        <div class="tele-val-row">
+                          <span class="tele-val highlight-red" id="teleHR">--</span>
+                          <span class="tele-unit">BPM</span>
+                        </div>
+                        <span class="tele-tag" id="teleHRStatus">Waiting for beats</span>
+                      </div>
+
+                      <div class="tele-metric-box">
+                        <span class="tele-label">HRV (RMSSD)</span>
+                        <div class="tele-val-row">
+                          <span class="tele-val" id="teleHRV">--</span>
+                          <span class="tele-unit">ms</span>
+                        </div>
+                        <span class="tele-tag" id="teleHRVStatus">Parasympathetic Tone</span>
+                      </div>
+
+                      <div class="tele-metric-box">
+                        <span class="tele-label">CALCULATED SpO₂</span>
+                        <div class="tele-val-row">
+                          <span class="tele-val" id="teleSpO2">--</span>
+                          <span class="tele-unit">%</span>
+                        </div>
+                        <span class="tele-tag" id="teleSpO2Status">Arterial Oxygen</span>
+                      </div>
+
+                      <div class="tele-metric-box">
+                        <span class="tele-label">R-R INTERVAL</span>
+                        <div class="tele-val-row">
+                          <span class="tele-val" id="teleRR">--</span>
+                          <span class="tele-unit">ms</span>
+                        </div>
+                        <span class="tele-tag" id="teleConfidence">Accuracy: 99.1%</span>
+                      </div>
+                    </div>
+
+                    <!-- Save Reading Button -->
+                    <div class="scanner-commit-bar">
+                      <button type="button" class="btn-commit-scan disabled" id="btnCommitScanResult">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <span>SAVE SCAN TO LOGBOOK &amp; DASHBOARD</span>
+                      </button>
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- Vital Signs History Table & Logs -->
+              <div class="vitals-history-box">
+                <div class="history-top">
+                  <h3>Recent Vitals Logbook</h3>
+                  <button class="text-btn" id="btnClearHistory">Clear All</button>
+                </div>
+                <div class="history-table-wrap">
+                  <table class="warrior-table">
+                    <thead>
+                      <tr>
+                        <th>Date &amp; Time</th>
+                        <th>Heart Rate</th>
+                        <th>SpO₂</th>
+                        <th>Temp</th>
+                        <th>BP (mmHg)</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody id="vitalsTableBody">
+                      <!-- Dynamic rows loaded here -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+
+
+            <!-- ============================================== -->
+            <!-- TAB 3: REGISTER WARRIOR PATIENT MODULE         -->
+            <!-- ============================================== -->
+            <div id="tab-register" class="tab-pane">
+              <div class="pane-header">
+                <div>
+                  <h2 class="pane-title">PATIENT <span class="highlight-red">REGISTRATION</span></h2>
+                  <p class="pane-subtitle">Set up warrior medical record &amp; emergency parameters</p>
+                </div>
+              </div>
+
+              <!-- Registration Form -->
+              <form id="patientRegistrationForm" class="warrior-form">
+                
+                <div class="avatar-selection-box">
+                  <label class="form-label">CHOOSE WARRIOR CALLSIGN / AVATAR</label>
+                  <div class="avatar-chips" id="avatarPicker">
+                    <button type="button" class="avatar-choice active" data-avatar="⚔️">⚔️</button>
+                    <button type="button" class="avatar-choice" data-avatar="⚡">⚡</button>
+                    <button type="button" class="avatar-choice" data-avatar="🥊">🥊</button>
+                    <button type="button" class="avatar-choice" data-avatar="🛡️">🛡️</button>
+                    <button type="button" class="avatar-choice" data-avatar="🦅">🦅</button>
+                    <button type="button" class="avatar-choice" data-avatar="🐺">🐺</button>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-full">
+                    <label for="regFullName">FULL NAME / WARRIOR NAME *</label>
+                    <input type="text" id="regFullName" required placeholder="e.g. Commander Bruce Wayne" value="Uriel Vance">
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-half">
+                    <label for="regAge">AGE *</label>
+                    <input type="number" id="regAge" min="1" max="120" value="28" required>
+                  </div>
+                  <div class="form-group col-half">
+                    <label for="regGender">GENDER *</label>
+                    <select id="regGender">
+                      <option value="Male" selected>Male</option>
+                      <option value="Female">Female</option>
+                      <option value="Non-Binary">Non-Binary</option>
+                      <option value="Prefer not to say">Prefer not to say</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-half">
+                    <label for="regBloodType">BLOOD TYPE</label>
+                    <select id="regBloodType">
+                      <option value="O+" selected>O+ (Universal Donor)</option>
+                      <option value="O-">O-</option>
+                      <option value="A+">A+</option>
+                      <option value="A-">A-</option>
+                      <option value="B+">B+</option>
+                      <option value="B-">B-</option>
+                      <option value="AB+">AB+</option>
+                      <option value="AB-">AB-</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-half">
+                    <label for="regWeight">WEIGHT (kg) &amp; HEIGHT</label>
+                    <input type="text" id="regWeight" placeholder="e.g. 78 kg / 178 cm" value="75 kg / 175 cm">
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-full">
+                    <label for="regEmergencyContact">EMERGENCY CONTACT &amp; PHONE</label>
+                    <input type="text" id="regEmergencyContact" placeholder="Contact Name & Phone" value="Doc Raymond - +63 917 555 0192">
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-full">
+                    <label for="regAllergies">ALLERGIES &amp; PRE-EXISTING CONDITIONS</label>
+                    <input type="text" id="regAllergies" placeholder="e.g. Penicillin, Asthma, None" value="None known. High athletic condition.">
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-full">
+                    <label for="regFitnessGoal">PRIMARY HEALTH &amp; FITNESS GOAL</label>
+                    <select id="regFitnessGoal">
+                      <option value="Cardio & Endurance" selected>Cardio &amp; Endurance Conditioning</option>
+                      <option value="Strength & Muscle">Maximum Strength &amp; Hypertrophy</option>
+                      <option value="Blood Pressure Regulation">Blood Pressure &amp; Heart Health</option>
+                      <option value="Fat Loss & Shred">Fat Loss &amp; Metabolic Shred</option>
+                    </select>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn-warrior-primary">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>SAVE &amp; UPDATE PROFILE</span>
+                </button>
+
+                <div id="regSuccessAlert" class="success-banner hidden">
+                  <span>✓ Warrior Profile successfully saved! Dashboard updated.</span>
+                </div>
+              </form>
+
+              <!-- Current Stored Profile Card -->
+              <div class="stored-profile-card">
+                <div class="profile-card-header">
+                  <span class="badge-title">REGISTERED WARRIOR DOSSIER</span>
+                  <span class="status-live">VERIFIED ACTIVE</span>
+                </div>
+                <div class="profile-details-grid">
+                  <div><strong>Name:</strong> <span id="dispName">Uriel Vance</span></div>
+                  <div><strong>Callsign:</strong> <span id="dispAvatar">⚔️ Warrior</span></div>
+                  <div><strong>Age / Gender:</strong> <span id="dispAgeGender">28 / Male</span></div>
+                  <div><strong>Blood Group:</strong> <span id="dispBlood" class="highlight-red">O+</span></div>
+                  <div><strong>Emergency:</strong> <span id="dispEmergency">Doc Raymond</span></div>
+                  <div><strong>Goal:</strong> <span id="dispGoal">Cardio &amp; Endurance</span></div>
+                </div>
+              </div>
+
+            </div>
+
+
+            <!-- ============================================== -->
+            <!-- TAB 4: MEDICATIONS MODULE                      -->
+            <!-- ============================================== -->
+            <div id="tab-meds" class="tab-pane">
+              <div class="pane-header">
+                <div>
+                  <h2 class="pane-title">MEDICATION <span class="highlight-red">REMINDERS</span></h2>
+                  <p class="pane-subtitle">Never miss a dose. Track supplements &amp; prescriptions</p>
+                </div>
+                <button class="btn-warrior-small glow-btn" id="btnAddMedModalBtn">+ Add Pill</button>
+              </div>
+
+              <!-- List of active reminders -->
+              <div class="medications-list" id="medicationsList">
+                <!-- Injected via JavaScript -->
+              </div>
+
+              <!-- Hydration Water Tracker -->
+              <div class="hydration-card">
+                <div class="hydration-header">
+                  <div>
+                    <h4>DAILY HYDRATION COMBAT TANK</h4>
+                    <p>Target: 3,000 mL for optimal cellular transport</p>
+                  </div>
+                  <span class="tank-val" id="waterIntakeVal">2,250 / 3,000 mL</span>
+                </div>
+                <div class="tank-progress-bar">
+                  <div class="tank-fill" id="waterBarFill" style="width: 75%;"></div>
+                </div>
+                <div class="water-actions">
+                  <button class="btn-water-quick" data-amount="250">+250 mL Glass</button>
+                  <button class="btn-water-quick" data-amount="500">+500 mL Bottle</button>
+                  <button class="btn-water-quick reset" id="btnResetWater">Reset</button>
+                </div>
+              </div>
+            </div>
+
+
+            <!-- ============================================== -->
+            <!-- TAB 5: WELLNESS & DOCTOR CONSULTATION MODAL     -->
+            <!-- ============================================== -->
+            <div id="tab-tips" class="tab-pane">
+              <div class="pane-header">
+                <div>
+                  <h2 class="pane-title">WARRIOR <span class="highlight-red">WELLNESS TIPS</span></h2>
+                  <p class="pane-subtitle">Proven protocols for peak physiological condition</p>
+                </div>
+              </div>
+
+              <div class="wellness-cards-stack">
+                <div class="wellness-card">
+                  <div class="tip-icon">🫀</div>
+                  <div class="tip-content">
+                    <h4>Zone 2 Cardio for Resting Heart Rate</h4>
+                    <p>Maintaining 45 minutes of steady Zone 2 cardio (conversational pace) 3 times per week builds mitochondrial density and significantly reduces resting BPM.</p>
+                    <span class="tip-tag">CARDIOVASCULAR</span>
+                  </div>
+                </div>
+
+                <div class="wellness-card">
+                  <div class="tip-icon">🩸</div>
+                  <div class="tip-content">
+                    <h4>Blood Oxygen &amp; Diaphragmatic Breathwork</h4>
+                    <p>Practice box breathing (4s inhale, 4s hold, 4s exhale, 4s hold) for 5 minutes during stress spikes to boost alveolar oxygen saturation and lower cortisol.</p>
+                    <span class="tip-tag">RESPIRATORY</span>
+                  </div>
+                </div>
+
+                <div class="wellness-card">
+                  <div class="tip-icon">🌡️</div>
+                  <div class="tip-content">
+                    <h4>Thermal Regulation &amp; Recovery</h4>
+                    <p>Cold showers or ice plunges trigger vasoconstriction followed by rapid vasodilation, flushing metabolic waste and reducing inflammation.</p>
+                    <span class="tip-tag">RECOVERY</span>
+                  </div>
+                </div>
+
+                <div class="wellness-card">
+                  <div class="tip-icon">💪</div>
+                  <div class="tip-content">
+                    <h4>Sleep Architecture &amp; Anabolic Repair</h4>
+                    <p>Aim for 7.5 to 8.5 hours in complete darkness. Peak human growth hormone release occurs during deep delta slow-wave sleep cycles between 10 PM and 2 AM.</p>
+                    <span class="tip-tag">LONGEVITY</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom Navigation Bar (Matches Reference Image Screen) -->
+          <nav class="bottom-nav-bar">
+            <button class="nav-item active" data-nav="tab-dashboard">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+              <span>Home</span>
+            </button>
+            <button class="nav-item" data-nav="tab-vitals">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              <span>History</span>
+            </button>
+            <button class="nav-item" data-nav="tab-register">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              <span>Profile</span>
+            </button>
+          </nav>
+
+        </section>
+
+      </div> <!-- /phone-screen -->
+    </div> <!-- /phone-bezel -->
+
+  </main>
+
+
+  <!-- ============================================== -->
+  <!-- MODALS                                         -->
+  <!-- ============================================== -->
+
+  <!-- Modal 1: Log New Vitals Reading -->
+  <div class="modal-backdrop hidden" id="vitalsModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <span class="pulse-dot"></span>
+          <h3>LOG VITAL SIGNS</h3>
+        </div>
+        <button class="modal-close-btn" id="closeVitalsModalBtn">✕</button>
+      </div>
+      <form id="newVitalsForm" class="modal-body">
+        <div class="form-row">
+          <div class="form-group col-half">
+            <label for="inputModalHR">HEART RATE (BPM)</label>
+            <input type="number" id="inputModalHR" min="30" max="240" required value="75">
+          </div>
+          <div class="form-group col-half">
+            <label for="inputModalSpO2">SpO₂ (%)</label>
+            <input type="number" id="inputModalSpO2" min="70" max="100" required value="98">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-half">
+            <label for="inputModalTemp">BODY TEMP (°C)</label>
+            <input type="number" step="0.1" id="inputModalTemp" min="34" max="43" required value="36.6">
+          </div>
+          <div class="form-group col-half">
+            <label for="inputModalBP">BLOOD PRESSURE (mmHg)</label>
+            <input type="text" id="inputModalBP" placeholder="e.g. 120/80" required value="120/80">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-half">
+            <label for="inputModalResp">RESPIRATION (br/min)</label>
+            <input type="number" id="inputModalResp" min="8" max="40" value="16">
+          </div>
+          <div class="form-group col-half">
+            <label for="inputModalGlucose">BLOOD GLUCOSE (mg/dL)</label>
+            <input type="number" id="inputModalGlucose" min="40" max="400" value="95">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-full">
+            <label for="inputModalNotes">CLINICAL NOTES / SYMPTOMS</label>
+            <input type="text" id="inputModalNotes" placeholder="e.g. Post-workout cardio session, felt energized">
+          </div>
+        </div>
+
+        <button type="submit" class="btn-warrior-primary">
+          <span>COMMIT VITALS TO RECORD</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- Modal 2: Book Doctor Consultation -->
+  <div class="modal-backdrop hidden" id="consultationModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <span class="modal-badge-red">TELEHEALTH</span>
+          <h3>BOOK A CONSULTATION</h3>
+        </div>
+        <button class="modal-close-btn" id="closeConsultModalBtn">✕</button>
+      </div>
+      <form id="consultationForm" class="modal-body">
+        <p class="modal-lead">Connect with a certified medical officer or sports physician.</p>
+        
+        <div class="form-group">
+          <label>SELECT SPECIALIST</label>
+          <div class="doctor-selector-grid">
+            <label class="doc-card-option selected">
+              <input type="radio" name="doctorChoice" value="Dr. Alexander Vance (Cardiology)" checked>
+              <div class="doc-card-inner">
+                <span class="doc-avatar">🩺</span>
+                <div>
+                  <div class="doc-name">Dr. Alexander Vance</div>
+                  <div class="doc-role">Chief of Cardiology</div>
+                  <div class="doc-rating">⭐ 4.9 (320 consults)</div>
+                </div>
+              </div>
+            </label>
+
+            <label class="doc-card-option">
+              <input type="radio" name="doctorChoice" value="Dr. Sarah Connor (Sports Medicine)">
+              <div class="doc-card-inner">
+                <span class="doc-avatar">⚡</span>
+                <div>
+                  <div class="doc-name">Dr. Sarah Connor</div>
+                  <div class="doc-role">Sports Conditioning &amp; Rehab</div>
+                  <div class="doc-rating">⭐ 5.0 (412 consults)</div>
+                </div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-half">
+            <label for="consultDate">DATE</label>
+            <input type="date" id="consultDate" required>
+          </div>
+          <div class="form-group col-half">
+            <label for="consultTime">TIME SLOT</label>
+            <select id="consultTime">
+              <option value="09:00 AM">09:00 AM</option>
+              <option value="11:30 AM">11:30 AM</option>
+              <option value="02:00 PM" selected>02:00 PM</option>
+              <option value="04:30 PM">04:30 PM</option>
+              <option value="07:00 PM">07:00 PM</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="consultReason">CHIEF COMPLAINT / SYMPTOM REASON</label>
+          <input type="text" id="consultReason" placeholder="e.g. Routine cardiovascular checkup, palpitations check" required value="Routine Vitals Checkup">
+        </div>
+
+        <button type="submit" class="btn-warrior-primary glow-pulse">
+          CONFIRM CONSULTATION BOOKING
+        </button>
+      </form>
+
+      <!-- Booking Confirmation Screen Inside Modal -->
+      <div id="bookingConfirmationCard" class="booking-conf-box hidden">
+        <div class="conf-icon">✓</div>
+        <h3>CONSULTATION CONFIRMED</h3>
+        <p id="confDetailsText">Your appointment is scheduled with Dr. Alexander Vance.</p>
+        <div class="ticket-stub" id="confTicketDetails">
+          <!-- Populated by JS -->
+        </div>
+        <button class="btn-warrior-primary" id="btnDoneBooking">RETURN TO APP</button>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- Modal 3: Add Medication -->
+  <div class="modal-backdrop hidden" id="addMedModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <span class="modal-badge-red">RX</span>
+          <h3>ADD MEDICATION / SUPPLEMENT</h3>
+        </div>
+        <button class="modal-close-btn" id="closeAddMedModalBtn">✕</button>
+      </div>
+      <form id="newMedForm" class="modal-body">
+        <div class="form-group">
+          <label for="medName">MEDICATION / SUPPLEMENT NAME *</label>
+          <input type="text" id="medName" placeholder="e.g. Omega-3 Triple Strength" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-half">
+            <label for="medDosage">DOSAGE (mg/capsule)</label>
+            <input type="text" id="medDosage" placeholder="e.g. 1000 mg" required>
+          </div>
+          <div class="form-group col-half">
+            <label for="medTime">SCHEDULED TIME</label>
+            <input type="time" id="medTime" value="08:00" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="medInstructions">INSTRUCTIONS</label>
+          <input type="text" id="medInstructions" placeholder="e.g. Take with breakfast & plenty of water">
+        </div>
+        <button type="submit" class="btn-warrior-primary">
+          SAVE REMINDER
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 4: Install PWA Guide (Safari/iOS & Desktop manual install instructions) -->
+  <div class="modal-backdrop hidden" id="installGuideModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <span class="modal-badge-red">PWA</span>
+          <h3>INSTALL VITALIS APP</h3>
+        </div>
+        <button class="modal-close-btn" id="closeInstallModalBtn" title="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-lead">Install VITALIS to your device for instant launch and complete offline health telemetry.</p>
+        
+        <div class="install-guide-list">
+          <div class="install-guide-card" id="guideDesktopCard">
+            <div class="guide-card-icon">💻</div>
+            <div class="guide-card-content">
+              <strong>Desktop (Chrome, Edge, Brave)</strong>
+              <p>Click the <strong>Install</strong> icon in the right side of the address/URL bar, or select <strong>Menu &rarr; Install Vitalis</strong>.</p>
+            </div>
+          </div>
+
+          <div class="install-guide-card" id="guideIosCard">
+            <div class="guide-card-icon">📱</div>
+            <div class="guide-card-content">
+              <strong>iPhone / iPad (Safari)</strong>
+              <p>Tap the <strong>Share</strong> button <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px;"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg> at the bottom, then choose <strong>"Add to Home Screen"</strong>.</p>
+            </div>
+          </div>
+
+          <div class="install-guide-card" id="guideAndroidCard">
+            <div class="guide-card-icon">🤖</div>
+            <div class="guide-card-content">
+              <strong>Android (Chrome)</strong>
+              <p>Tap the menu button (<strong>&vellip;</strong>) in the top right corner and tap <strong>"Install app"</strong> or <strong>"Add to Home screen"</strong>.</p>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" class="btn-warrior-primary" id="btnDismissInstallGuide">
+          UNDERSTOOD
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Toast Notification Container -->
+  <div id="toastNotification" class="toast-notification hidden" role="alert">
+    <span class="toast-icon" id="toastIcon">ℹ️</span>
+    <span class="toast-message" id="toastMessage">Notification message</span>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
